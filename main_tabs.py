@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QTabWidget, QVBoxLayout    
+from PyQt5.QtWidgets import QWidget, QTabWidget, QVBoxLayout, QLabel
 
 class MainTabs(QWidget):
     """
@@ -14,10 +14,9 @@ class MainTabs(QWidget):
         # Initialize main tab screen
         self.main_tabs()
 
-
         # Add widgets
         self.add_widgets()
-        self.tab.resize(300, 200)
+        
 
 
     def layout(self):
@@ -48,9 +47,13 @@ class MainTabs(QWidget):
         self.tab5 = QWidget(self)
         self.tab.addTab(self.tab5, "Results")
 
-        # Create tab
-        #self.tab_widget_layout = QVBoxLayout(self)
-        #self.tab_widget_layout.layout.addWidget
+        # Add some contents to the first tab
+        # if we use self here than the pyqt5 will get confused whether we are referring to overall Tab's layout or the layout inside this specific tab
+        self.tab1.layout = QVBoxLayout()
+        self.l = QLabel()
+        self.l.setText("This is the first tab")
+        self.tab1.layout.addWidget(self.l)
+        self.tab1.setLayout(self.tab1.layout)
 
     def add_widgets(self):
         """

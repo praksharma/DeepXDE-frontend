@@ -27,8 +27,8 @@ class MyApp(QMainWindow):
 
         self.left = 0
         self.top = 0
-        self.width = 300
-        self.height = 200
+        self.width = 800
+        self.height = 600
 
         self.setGeometry(self.left, self.top, self.width, self.height)
         
@@ -43,6 +43,7 @@ class MyApp(QMainWindow):
         Add widgets to the main window.
         """
         self.main_tab_widget = MainTabs(self)
+        self.setCentralWidget(self.main_tab_widget) # centre widget
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
