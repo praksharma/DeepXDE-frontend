@@ -7,7 +7,7 @@ class MainTabs(QWidget):
 
     """
     def __init__(self, parent):
-        super(QWidget, self).__init__(parent)
+        super(QWidget, self).__init__()
 
         # Setup the MainTabs layout
         self.layout()
@@ -19,7 +19,7 @@ class MainTabs(QWidget):
         self.add_widgets()
         
         # Add contents in each tab
-        self.setup = Setup(self.tab0) # here self.tab0 is passed as self to Setup class
+        self.setup = Setup(self.tab0, self.wo)
 
 
     def layout(self):
