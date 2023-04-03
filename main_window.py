@@ -1,5 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
+from main_tabs import MainTabs
 
 class MyApp(QMainWindow):
     """
@@ -24,14 +25,24 @@ class MyApp(QMainWindow):
         # window title
         self.setWindowTitle("DeepXDE Frontend")
 
-        # A maximised screen
-        self.showMaximized()
+        self.left = 0
+        self.top = 0
+        self.width = 300
+        self.height = 200
+
+        self.setGeometry(self.left, self.top, self.width, self.height)
         
+        # Add widgets
+        self.add_widgets()
+
         # Show the app
         self.show()
 
     def add_widgets(self):
-        pass
+        """
+        Add widgets to the main window.
+        """
+        self.main_tab_widget = MainTabs(self)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

@@ -1,29 +1,61 @@
-    # # Add things to the empty screen
-    # def add_to_MyApp(self):   
-    #     # Create tabs to the Qwidget
-    #     self.tab1.layout = QVBoxLayout(self)
-    #     self.l = QLabel()
-    #     self.l.setText("This is the first tab")
-    #     self.tab1.layout.addWidget(self.l)
-    #     self.tab1.setLayout(self.tab1.layout)
+from PyQt5.QtWidgets import QWidget, QTabWidget, QVBoxLayout    
 
-    # # Initialize main tab screen
-    # def main_tabs(self):
-    #     # Add any tabs that you want display in the main screen.
-    #     tab = QTabWidget(self)
+class MainTabs(QWidget):
+    """
+    Add contents to the main tabs widget.
 
-    #     tab1 = QWidget(self)
-    #     tab.addTab(tab1, "Geometry")
+    """
+    def __init__(self, parent):
+        super(QWidget, self).__init__(parent)
 
-    #     tab2 = QWidget(self)
-    #     tab.addTab(tab2, "Constraints")
+        # Setup the MainTabs layout
+        self.layout()
 
-    #     tab3 = QWidget(self)
-    #     tab.addTab(tab3, "Compile")
-
-    #     tab4 = QWidget(self)
-    #     tab.addTab(tab4, "Training")
+        # Initialize main tab screen
+        self.main_tabs()
 
 
-    #     tab5 = QWidget(self)
-    #     tab.addTab(tab5, "Results")
+        # Add widgets
+        self.add_widgets()
+        self.tab.resize(300, 200)
+
+
+    def layout(self):
+        """
+        A vertical layout has been added to the MainTabs widget. Anything we add will be added vertically.
+        """
+        self.layout = QVBoxLayout(self)
+
+    def main_tabs(self):
+        """
+        Add any tabs that you want to display in the main screen.
+        """
+
+        self.tab = QTabWidget(self)
+
+        self.tab1 = QWidget(self)
+        self.tab.addTab(self.tab1, "Geometry")
+
+        self.tab2 = QWidget(self)
+        self.tab.addTab(self.tab2, "Constraints")
+
+        self.tab3 = QWidget(self)
+        self.tab.addTab(self.tab3, "Compile")
+
+        self.tab4 = QWidget(self)
+        self.tab.addTab(self.tab4, "Training")
+
+        self.tab5 = QWidget(self)
+        self.tab.addTab(self.tab5, "Results")
+
+        # Create tab
+        #self.tab_widget_layout = QVBoxLayout(self)
+        #self.tab_widget_layout.layout.addWidget
+
+    def add_widgets(self):
+        """
+        Add widgets to the layout.
+        """
+
+        self.layout.addWidget(self.tab)
+        self.setLayout(self.layout)
