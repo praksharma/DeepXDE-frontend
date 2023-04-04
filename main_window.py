@@ -24,7 +24,8 @@ class MyApp(QMainWindow):
         super().__init__()  # initialise super class
 
         # set default workdir to home
-        gen_conf_file()
+        self.workdir = '$HOME/DeepXDE_simulations/'
+        gen_conf_file(self.workdir)
          
 
         # window title
