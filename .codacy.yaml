@@ -1,0 +1,10 @@
+---
+engines:
+  duplication:
+    enabled: true
+python:
+  pylint:
+    enabled: true
+  patterns:
+    exclude:
+      - __pycache__/
