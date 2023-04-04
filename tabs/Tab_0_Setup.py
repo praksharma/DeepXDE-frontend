@@ -49,10 +49,7 @@ class Setup(QWidget):
         # Add the dimension combobox to the column 
         self.grid.addWidget(self.dimension_ComboBox,2,1 ,1,1) # 3rd row 3nd columns for more gap 
         
-        # Add an empty QLabel with suitable height to increase the gap
-        self.empty_label = QLabel()
-        self.empty_label.setFixedHeight(10) # set the height of the empty label as per your requirement
-        self.grid.addWidget(self.empty_label, 3, 0, 1, 1)
+        empty_label(self,  3, 0, 1, 1, 10)
         
         # Asking for the working directory
         self.grid.addWidget(QLabel('Please browse the working directory.'), 4, 0, 1, 1) # 3rd row 1st columns 
@@ -60,10 +57,7 @@ class Setup(QWidget):
         # Create workdir edit text
         self.workdir_editText()
 
-        # Add an empty QLabel with suitable height to increase the gap
-        self.empty_label = QLabel()
-        self.empty_label.setFixedHeight(10) # set the height of the empty label as per your requirement
-        self.grid.addWidget(self.empty_label, 5, 0, 1, 1)
+        empty_label(self,  5, 0, 1, 1, 10)
 
         # Add the workdir edit text below the label
         self.grid.addWidget(self.workdir_editText, 6, 0, 1, 2)
