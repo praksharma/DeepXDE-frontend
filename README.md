@@ -1,6 +1,7 @@
 # DeepXDE-frontend
 
 [![License](https://img.shields.io/github/license/praksharma/DeepXDE-frontend)](https://github.com/praksharma/DeepXDE-frontend/blob/main/LICENSE)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/04e5558c825a4cc09455565ec52a7874)](https://app.codacy.com/gh/praksharma/DeepXDE-frontend/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 A GUI frontend for [DeepXDE](https://deepxde.readthedocs.io/en/latest/) made in PyQt5. This project is in alpha unless you see a release.
 
