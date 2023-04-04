@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QWidget, QGridLayout, QLabel, QComboBox, QLineEdit, QPushButton, QFileDialog, QDialog
 import os
 import configparser
-from helpers import empty_label
+from helpers import empty_label, update_workdir_conf
 
 
 # Remember
@@ -92,8 +92,10 @@ class Setup(QWidget):
         self.workdir_browse_button = QPushButton('Browse', self)
         self.workdir_browse_button.clicked.connect(self.browse_workdir) # connect to a callback function
     
-    # Implement the browse_workdir function
     def browse_workdir(self):
+        """
+        Implement the browse_workdir function
+        """
         self.dialog = QFileDialog()
         # allow directory selection only
         self.dialog.setFileMode(QFileDialog.DirectoryOnly)
@@ -102,3 +104,8 @@ class Setup(QWidget):
         if self.dialog.exec_() == QDialog.Accepted:
             self.selected_directory = self.dialog.selectedFiles()[0] # selected folder
             self.workdir_editText.setText(self.selected_directory+"/") # add / after the path
+            # Update the conf file with the browsed directory
+            update_workdir_conf(self)
+
+
+        

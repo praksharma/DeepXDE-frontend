@@ -1,6 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from main_tabs import MainTabs
+from helpers import gen_conf_file
 
 class MyApp(QMainWindow):
     """
@@ -21,6 +22,10 @@ class MyApp(QMainWindow):
    
     def __init__(self):
         super().__init__()  # initialise super class
+
+        # set default workdir to home
+        gen_conf_file()
+         
 
         # window title
         self.setWindowTitle("DeepXDE Frontend")
