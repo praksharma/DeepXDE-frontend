@@ -2,30 +2,16 @@ from PyQt5.QtWidgets import QLabel
 import configparser
 
 
-def gen_conf_file():
+def gen_conf_file(workdir):
     """
     The code creates an ini file to store confgurations.
     the default workdir is $HOME/DeepXDE_simulations/
     """
     config = configparser.ConfigParser()
-    config['DEFAULT'] = {'workdir': '$HOME/DeepXDE_simulations/'}
+    config['DEFAULT'] = {'workdir': workdir}
 
     with open('config.ini', 'w') as configfile:
         config.write(configfile)
-
-def update_workdir_conf(self):
-    """
-    Update the workdir in the config file (see tabs/Tab_0_Setup.py)
-    """
-
-    config = configparser.ConfigParser()
-    config.read('config.ini')
-    # replace the existing workdir with the browsed one
-    config.set('DEFAULT', 'workdir', self.selected_directory+"/")
-    # Write the change to the file
-    with open('config.ini', 'w') as configfile:
-        config.write(configfile)
-        
 
 def empty_label(self, row , col, rowSpan, colSpan, height):
     """
