@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QGridLayout, QLabel, QComboBox, QLineEdit, QPushButton
+from PyQt5.QtWidgets import QWidget, QGridLayout, QLabel, QComboBox, QLineEdit, QPushButton, QFileDialog, QDialog
 import os
 import configparser
 from helpers import empty_label
@@ -62,6 +62,11 @@ class Setup(QWidget):
         # Add the workdir edit text below the label
         self.grid.addWidget(self.workdir_editText, 6, 0, 1, 2)
 
+        # Create pushbutton to browse the filesystem
+        self.workdir_pushbutton()
+
+        # Add pushbutton to browse the filesystem
+        self.grid.addWidget(self.workdir_browse_button, 4, 1, 1, 1)
 
 
 
@@ -79,3 +84,21 @@ class Setup(QWidget):
         """
         self.workdir_editText = QLineEdit(self)
         self.workdir_editText.setText(os.path.expandvars(self.workdir))
+
+    def workdir_pushbutton(self):
+        """
+        Add workdir browsing pushbutton
+        """
+        self.workdir_browse_button = QPushButton('Browse', self)
+        self.workdir_browse_button.clicked.connect(self.browse_workdir) # connect to a callback function
+    
+    # Implement the browse_workdir function
+    def browse_workdir(self):
+        self.dialog = QFileDialog()
+        # allow directory selection only
+        self.dialog.setFileMode(QFileDialog.DirectoryOnly)
+        
+        # Put the workdir in the workdir_editText
+        if self.dialog.exec_() == QDialog.Accepted:
+            self.selected_directory = self.dialog.selectedFiles()[0] # selected folder
+            self.workdir_editText.setText(self.selected_directory+"/") # add / after the path
