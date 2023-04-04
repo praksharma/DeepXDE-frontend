@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QWidget, QGridLayout, QLabel, QComboBox, QLineEdit, QPushButton
 import os
 import configparser
+from helpers import empty_label
 
 
 # Remember
@@ -36,11 +37,8 @@ class Setup(QWidget):
         # how to span over entire row or column : https://stackoverflow.com/a/38332682/14598633 and https://stackoverflow.com/a/14337204/14598633
         # Here is QGridLayout example : https://www.bogotobogo.com/Qt/Qt5_GridLayout.php
 
-        # Add an empty QLabel with suitable height to increase the gap
-        self.empty_label = QLabel()
-        self.empty_label.setFixedHeight(10) # set the height of the empty label as per your requirement
-        self.grid.addWidget(self.empty_label, 1, 0, 1, 1)
-        
+        empty_label(self,  1, 0, 1, 1, 10)
+
         # Asking for dimension of the problem
         self.grid.addWidget(QLabel('Please select the dimension of the problem.'), 2, 0, 1, 1) # 3rd row 1st columns 
 
