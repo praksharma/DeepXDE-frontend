@@ -22,11 +22,6 @@ class MyApp(QMainWindow):
     def __init__(self):
         super().__init__()  # initialise super class
 
-        # Global attributes
-        self.workdir = "$HOME/DeepXDE_simulations/"
-
-
-
         # window title
         self.setWindowTitle("DeepXDE Frontend")
 

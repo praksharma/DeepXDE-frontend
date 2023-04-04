@@ -19,7 +19,7 @@ class MainTabs(QWidget):
         self.add_widgets()
         
         # Add contents in each tab
-        self.setup = Setup(self.tab0, self.wo)
+        self.setup = Setup(self.tab0)
 
 
     def layout(self):
