@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QGridLayout, QLabel, QComboBox, QLineEdit, QPushButton, QFileDialog, QDialog
+from PyQt5.QtWidgets import QWidget, QGridLayout, QLabel, QComboBox, QLineEdit, QPushButton, QFileDialog, QDialog, QTextEdit
 import os
 import configparser
 from helpers import empty_label, gen_conf_file
@@ -56,7 +56,18 @@ class Setup(QWidget):
         # Add pushbutton to browse the filesystem
         self.grid.addWidget(self.workdir_browse_button, 4, 1, 1, 1)
 
+        empty_label(self,  7, 0, 1, 1, 10)
 
+        # A pushbutton for module check textbox
+        ##### Dynamically adding textedit messes with the layout
+        #self.module_check_pushbutton = QPushButton("Check dependencies", self)
+        #self.module_check_pushbutton.clicked.connect(self.check_modules)
+        #self.grid.addWidget(self.module_check_pushbutton,8,0,1,1)
+        
+        # Adding module check message
+        self.grid.addWidget(QLabel('Dependency check. If there is an error please download the dependendies.'), 8, 0, 1, 1) # 3rd row 1st columns 
+        self.check_modules()
+        self.grid.addWidget(self.error_text_edit, 9,0,1,2)
 
 
     def problem_dimension_comboBox(self):
@@ -96,4 +107,38 @@ class Setup(QWidget):
             gen_conf_file(self.selected_directory)
 
 
-        
+    def check_modules(self):
+        """
+        Checking for Pytorch, DeepXDE, numpy and matplotlib
+        DeepXDE ships matplotlib, numpy, scikit-learn, scikit-optimize and scipy. So no need to check these
+        """
+        self.moduleCheckTurnedOn = True
+        self.flag = False
+        self.error_message = "Checking modules\n"
+        try:
+            self.error_message = self.error_message + "Searching for DeepXDE...\n"
+            import deepxde
+            self.error_message = self.error_message + "DeepXDE found : version" + str(deepxde.__version__) + "\n"
+        except ImportError:
+            self.flag = True
+            self.error_message = self.error_message + "Can't find DeepXDE.\n Please install DeepXDE.\n"
+
+        try:
+            self.error_message = self.error_message + "Searching for Pytorch...\n"
+            import torch
+            self.error_message = self.error_message + "Pytorch found : version" +str(torch.__version__) + "\n"
+        except:
+            self.flag = True
+            self.error_message = self.error_message + "Can't find Pytorch.\n Please install Pytorch.\n"
+
+        if self.flag:
+            self.error_message = self.error_message + "Make sure you activate a correct Python environment.\n"
+        else:
+            self.error_message = self.error_message + "All modules have been found...\nYou are good to go :)"
+
+        self.error_text_edit = QTextEdit(self)
+        self.error_text_edit.setReadOnly(True) # set to read only
+        self.error_text_edit.setText(self.error_message)
+
+        # Add the module check textbox
+#        self.grid.addWidget(self.error_text_edit, 9,0,5,2)
