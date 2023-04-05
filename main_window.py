@@ -66,12 +66,12 @@ class MyApp(QMainWindow):
 
     def menu_bar(self):
         """
-        Add a manu bar to the main window
+        Add a menu bar to the main window
         """
+        # Add menu bar
         self.menu = QMenuBar(self)
         self.file_menu = self.menu.addMenu("File")
-
-        self.about = self.menu.addMenu("About")
+        self.about_menu = self.menu.addMenu("About")
         
         # A simple quit button with a quit action
         self.quit = QAction("Quit", self)
@@ -82,6 +82,23 @@ class MyApp(QMainWindow):
         # Close the program when quit menu is pressed
         self.quit.triggered.connect(self.close)
 
+        # A simple quit button with a quit action
+        self.about = QAction("About", self)
+        self.about_menu.addAction(self.about) 
+        self.layout.addWidget(self.menu)
+
+        # Close the program when quit menu is clicked
+        self.quit.triggered.connect(self.close)
+
+        # Open about dialog box when about is clicked
+        self.about.triggered.connect(self.showDialogBox) 
+
+    def showDialogBox(self):
+            # Create a new instance of the WelcomeDialog class
+            welcome_dialog = WelcomeDialog(self)
+
+            # Show the dialog
+            welcome_dialog.exec_()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
