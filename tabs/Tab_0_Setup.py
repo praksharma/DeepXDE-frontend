@@ -18,19 +18,7 @@ class Setup(QWidget):
         self.config.read('config.ini')
         self.workdir = self.config['DEFAULT']['workdir']
 
-        #### TODO : Put this is a QMessageBox.
-        # # A big heading
-        # self.layout = QVBoxLayout()
-        # self.l = QLabel()
-        # font1 = self.l.font()
-        # font1.setPointSize(20)
-        # self.l.setFont(font1)
-
-
-        # self.l.setText("\nWelcome")
-        # self.layout.addWidget(self.l)
-        # self.setLayout(self.layout)
-
+        # Create a grid layout
         self.grid = QGridLayout(self)
         # spans the heading over all the columns
         self.grid.addWidget(QLabel('<p><span style="font-size:14px">Start with selecting suitable options to setup the model.</span></p>'), 0, 0, 1, 1)

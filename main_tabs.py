@@ -1,10 +1,9 @@
-from PyQt5.QtWidgets import QWidget, QTabWidget, QVBoxLayout #, QLabel
+from PyQt5.QtWidgets import QWidget, QTabWidget, QVBoxLayout , QLabel, QDialog, QPushButton
 from tabs.Tab_0_Setup import Setup
 
 class MainTabs(QWidget):
     """
     Add contents to the main tabs widget.
-
     """
     def __init__(self, parent):
         super(QWidget, self).__init__()
@@ -75,3 +74,32 @@ class MainTabs(QWidget):
 
         self.layout.addWidget(self.tab)
         self.setLayout(self.layout)
+
+class WelcomeDialog(QDialog):
+    """
+    A dialog box for the welcome message at the startup.
+    """
+    def __init__(self, parent):
+        super(QWidget, self).__init__()
+
+        # setup the title and dimensions
+        self.setWindowTitle("About")
+        self.setGeometry(100, 100, 300, 200)
+
+        # Create a vertical layout to add stuff
+        self.layout = QVBoxLayout(self)
+        
+        # Create an about text
+        self.label = QLabel("Welcome",self)
+        self.layout.addWidget(self.label)
+
+        # Create a close button
+        self.button = QPushButton("Close", self)
+        # Close the QDialog using the builtin close() method
+        self.button.clicked.connect(self.close) 
+
+        # Add the widgets to the layout
+        self.layout.addWidget(self.button)
+        
+        # Set the layout for the dialog box
+        self.setLayout(self.layout) 
