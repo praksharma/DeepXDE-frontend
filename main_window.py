@@ -32,23 +32,19 @@ class MyApp(QMainWindow):
 
         self.setGeometry(self.left, self.top, self.width, self.height)
 
-        # By default the menubar and the main tabs will overlap each other. So we put them in separate widgets and then place thme in a predefined layout
-        # However there is a warning that I've applied a layout multiple times.
-        # If this warning creates a problem in future, we put the menubar and the main tabs in separate QWidgets with central alignment. 
-        self.layout = QVBoxLayout(self)
+        """
+        By default the menubar and the main tabs will overlap each other. So we put them in separate widgets and then place thme in a predefined layout
+        However there is a warning that I've applied a layout multiple times.
+        If this warning creates a problem in future, we put the menubar and the main tabs in separate QWidgets with central alignment. 
+        Okay, there are spacing issues and a warning which might create problem later on.
+        Thus, I am using two seperate QWidgets to get rid of them.
+        """
 
         # Add menubar
         self.menu_bar()
 
         # Add widgets
         self.add_widgets()
-
-        # Set the main window layout
-        # The central widget is the area of the QMainWindow that is reserved for the main content of the application.
-        # By default, a QMainWindow has an empty central widget, so you need to set it explicitly if you want to add content to the main window.
-        self.central_widget = QWidget()
-        self.central_widget.setLayout(self.layout)
-        self.setCentralWidget(self.central_widget)
 
         # Show the app
         self.show()
@@ -59,14 +55,25 @@ class MyApp(QMainWindow):
         """
         # Add main tabs
         self.main_tab_widget = MainTabs(self)
-        #self.setCentralWidget(self.main_tab_widget) # centre widget
 
-        self.layout.addWidget(self.main_tab_widget)
+        # Create a container for the tabs widget
+        self.tabs_container = QWidget(self)
+        self.tabs_layout = QVBoxLayout(self.tabs_container)
+        self.tabs_layout.addWidget(self.main_tab_widget)
+
+        # Set the central widget to the tabs container
+        """
+        Set the main window layout
+        The central widget is the area of the QMainWindow that is reserved for the main content of the application.
+        By default, a QMainWindow has an empty central widget, so you need to set it explicitly if you want to add content to the main window.
+        """
+        self.setCentralWidget(self.tabs_container)
 
 
     def menu_bar(self):
         """
         Add a menu bar to the main window
+        Note: a menu doesn't need setCentralWidget method as it is done by default.
         """
         # Add menu bar
         self.menu = QMenuBar(self)
@@ -77,7 +84,6 @@ class MyApp(QMainWindow):
         self.quit = QAction("Quit", self)
         self.quit.setShortcut("Ctrl+Q")
         self.file_menu.addAction(self.quit) 
-        self.layout.addWidget(self.menu)
 
         # Close the program when quit menu is pressed
         self.quit.triggered.connect(self.close)
@@ -85,13 +91,21 @@ class MyApp(QMainWindow):
         # A simple quit button with a quit action
         self.about = QAction("About", self)
         self.about_menu.addAction(self.about) 
-        self.layout.addWidget(self.menu)
 
         # Close the program when quit menu is clicked
         self.quit.triggered.connect(self.close)
 
         # Open about dialog box when about is clicked
-        self.about.triggered.connect(self.showDialogBox) 
+        self.about.triggered.connect(self.showDialogBox)
+
+        # Create a container for the menu bar
+        self.menu_container = QWidget(self)
+        self.menu_layout = QVBoxLayout(self.menu_container)
+        self.menu_layout.setContentsMargins(0, 0, 0, 0)
+        self.menu_layout.addWidget(self.menu)
+
+        # Add the menu container to the main window
+        self.setMenuBar(self.menu)
 
     def showDialogBox(self):
             # Create a new instance of the WelcomeDialog class
