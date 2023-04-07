@@ -24,6 +24,8 @@ class MyApp(QMainWindow):
 
         # set default workdir to home
         self.workdir = '$HOME/DeepXDE_simulations/'
+
+
         gen_conf_file(self.workdir)
          
         # window title
