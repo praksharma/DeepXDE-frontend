@@ -78,6 +78,7 @@ class MainTabs(QWidget):
 class WelcomeDialog(QDialog):
     """
     A dialog box for the welcome message at the startup.
+    TODO: Add icons for email etc.
     """
     def __init__(self, parent):
         super(QWidget, self).__init__()
@@ -90,7 +91,7 @@ class WelcomeDialog(QDialog):
         self.layout = QVBoxLayout(self)
         
         # Create an about text
-        self.label = QLabel("Welcome",self)
+        self.label = QLabel("Thanks for using the software.",self)
         self.layout.addWidget(self.label)
 
         # Create a textbox read-only for some basic info
@@ -116,4 +117,4 @@ class WelcomeDialog(QDialog):
         self.layout.addWidget(self.button)
 
         # Set the layout for the dialog box
-        self.setLayout(self.layout) 
+        self.setLayout(self.layout)
