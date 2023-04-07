@@ -1,5 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMenuBar, QAction, QWidget, QVBoxLayout
+from PyQt5 import QtGui
 from main_tabs import MainTabs, WelcomeDialog
 from helpers import gen_conf_file
 
@@ -17,6 +18,9 @@ class MyApp(QMainWindow):
    
     def __init__(self):
         super().__init__()  # initialise super class
+
+        # Set frontend icon
+        self.setWindowIcon(QtGui.QIcon('home.png'))
 
         # set default workdir to home
         self.workdir = '$HOME/DeepXDE_simulations/'

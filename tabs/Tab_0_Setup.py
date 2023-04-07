@@ -65,7 +65,7 @@ class Setup(QWidget):
         #self.grid.addWidget(self.module_check_pushbutton,8,0,1,1)
         
         # Adding module check message
-        self.grid.addWidget(QLabel('Dependency check. If there is an error please download the dependendies.'), 8, 0, 1, 1) # 3rd row 1st columns 
+        self.grid.addWidget(QLabel('Dependency check. If there is an error please download the dependencies.'), 8, 0, 1, 1) # 3rd row 1st columns 
         self.check_modules()
         self.grid.addWidget(self.error_text_edit, 9,0,1,2)
 
