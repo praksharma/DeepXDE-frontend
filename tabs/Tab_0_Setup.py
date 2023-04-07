@@ -146,7 +146,7 @@ class Setup(QWidget):
             print("DEBUG : project.ini created")
 
         else: # if workdir exists
-            print("DEBUG : Directory already exists")
+            print("DEBUG : Workdir already exists")
             # check if project.ini is already there
             if os.path.exists(self.workdir + self.project_config):
                 print(f"The file '{self.project_config}' exists.")
