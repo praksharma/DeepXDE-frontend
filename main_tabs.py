@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QTabWidget, QVBoxLayout , QLabel, QDialog, QPushButton
+from PyQt5.QtWidgets import QWidget, QTabWidget, QVBoxLayout , QLabel, QDialog, QPushButton, QTextBrowser
 from tabs.Tab_0_Setup import Setup
 
 class MainTabs(QWidget):
@@ -93,13 +93,27 @@ class WelcomeDialog(QDialog):
         self.label = QLabel("Welcome",self)
         self.layout.addWidget(self.label)
 
+        # Create a textbox read-only for some basic info
+        # Define your hyperlink using HTML
+        self.github_hyperlink = '<a href="https://github.com/praksharma/DeepXDE-frontend">GitHub</a>'
+        self.agpl_license_hyperlink = '<a href="https://www.gnu.org/licenses/agpl-3.0.en.html">AGPL license</a>'
+
+        self.message = f"This is a frontend implementation of DeepXDE, licensed under the {self.agpl_license_hyperlink}.\nYou are allowed to use, modify and redistribute the software as per the terms of the AGPL license.\nThe source code is available on {self.github_hyperlink}."
+        self.message_text_edit = QTextBrowser(self)
+        self.message_text_edit.setReadOnly(True) # set to read only
+        self.message_text_edit.setHtml(self.message)        
+        self.message_text_edit.setOpenExternalLinks(True)
+
         # Create a close button
         self.button = QPushButton("Close", self)
         # Close the QDialog using the builtin close() method
         self.button.clicked.connect(self.close) 
+        
+        # Add the message textbox to the layout
+        self.layout.addWidget(self.message_text_edit)
 
         # Add the widgets to the layout
         self.layout.addWidget(self.button)
-        
+
         # Set the layout for the dialog box
         self.setLayout(self.layout) 
