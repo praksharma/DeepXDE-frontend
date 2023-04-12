@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QTabWidget, QVBoxLayout , QLabel, QDialog, QPushButton, QTextBrowser
 from tabs.Tab_0_Setup import Setup
+from tabs.Tab_1_Geometry import Geometry
 
 class MainTabs(QWidget):
     """
@@ -17,8 +18,11 @@ class MainTabs(QWidget):
         # Add widgets (main tab screen to the empty window)
         self.add_widgets()
         
-        # Add contents in each tab
+        # Add contents from each tab
+        # Passing relevant tabs to each class
         self.setup = Setup(self.tab0)
+
+        self.geometry = Geometry(self.tab1)
 
 
     def layout(self):
@@ -99,7 +103,7 @@ class WelcomeDialog(QDialog):
         self.github_hyperlink = '<a href="https://github.com/praksharma/DeepXDE-frontend">GitHub</a>'
         self.agpl_license_hyperlink = '<a href="https://www.gnu.org/licenses/agpl-3.0.en.html">AGPL license</a>'
 
-        self.message = f"This is a frontend implementation of DeepXDE, licensed under the {self.agpl_license_hyperlink}.\nYou are allowed to use, modify and redistribute the software as per the terms of the AGPL license.\nThe source code is available on {self.github_hyperlink}."
+        self.message = f"This is a frontend implementation of DeepXDE, licensed under the {self.agpl_license_hyperlink}.<br>You are allowed to use, modify and redistribute the software as per the terms of the AGPL license.<br>The source code is available on {self.github_hyperlink}."
         self.message_text_edit = QTextBrowser(self)
         self.message_text_edit.setReadOnly(True) # set to read only
         self.message_text_edit.setHtml(self.message)        
