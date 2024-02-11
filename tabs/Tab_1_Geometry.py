@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QWidget, QGridLayout, QLabel, QComboBox,  QPushButton
 import os
 import configparser
-from helpers import empty_label, gen_conf_file, problem_conf_file
+#from .helpers import empty_label, gen_conf_file, problem_conf_file
 
 # Remember
 # self.setup = Setup(self.tab0) 
@@ -12,3 +12,5 @@ class Geometry(QWidget):
         super(QWidget, self).__init__(parent)
 
         pass
+
+

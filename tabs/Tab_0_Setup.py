@@ -71,14 +71,15 @@ class Setup(QWidget):
 
         # A pushbutton for module check textbox
         ##### Dynamically adding textedit messes with the layout
-        #self.module_check_pushbutton = QPushButton("Check dependencies", self)
-        #self.module_check_pushbutton.clicked.connect(self.check_modules)
-        #self.grid.addWidget(self.module_check_pushbutton,8,0,1,1)
+        # self.module_check_pushbutton = QPushButton("Check dependencies", self)
+        # self.module_check_pushbutton.clicked.connect(self.check_modules)
+        # self.grid.addWidget(self.module_check_pushbutton,8,0,1,1)
         
-        # Adding module check message
+        # #Adding module check message
         self.grid.addWidget(QLabel('Dependency check. If there is an error please download the dependencies.'), 10, 0, 1, 1) # 3rd row 1st columns 
         self.check_modules()
         self.grid.addWidget(self.error_text_edit, 11, 0, 1, 2)
+
 
 
     def problem_dimension_comboBox(self):
@@ -132,6 +133,7 @@ class Setup(QWidget):
         A method to create project directory and populate the config files with basic details.
         """
         # Check if the workdir exists otherwise create one.
+        #print(f"DEBUG: dimension = {self.dimension_ComboBox.currentIndex()+1}")
         if not os.path.exists(self.workdir):
             print("DEBUG : Workdir doesn't exist")
             # Create the directory
@@ -191,3 +193,8 @@ class Setup(QWidget):
         self.error_text_edit = QTextEdit(self)
         self.error_text_edit.setReadOnly(True) # set to read only
         self.error_text_edit.setText(self.error_message)
+        #self.error_text_edit.setMinimumHeight(500)  # Sets the minimum height to 100 pixels
+        # self.grid.addWidget(self.error_text_edit, 11, 0, 6, 2)
+        # # self.error_text_edit.setFixedSize(400, 200)  # Adjust width and height as needed
+        # self.adjustSize()
+        # self.updateGeometry()
