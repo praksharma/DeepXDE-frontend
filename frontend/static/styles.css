@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+#checkBtn {
+    background-color: #008CBA; /* Blue */
+    color: white;
+    padding: 10px 24px;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#checkBtn:hover {
+    background-color: #007B9E;
+}
+
+#readonlyTextbox {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    width: calc(100% - 22px); /* Full-width minus padding and border */
+    box-sizing: border-box; /* Ensures padding doesn't increase width */
+    display: block; /* Override default display:none */
+}
