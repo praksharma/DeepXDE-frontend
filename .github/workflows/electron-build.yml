@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v2
-
+      
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -18,15 +18,13 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: ./frontend
+        working-directory: frontend # Correctly specify the directory
 
       - name: Build and Release Electron App
-        uses: samuelmeuli/action-electron-builder@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          release: true
-          args: --linux deb appImage
+        run: |
+          npx electron-builder build --linux deb appImage
+        working-directory: frontend # Apply it to each command step
         env:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           ELECTRON_CACHE: "/home/runner/.cache/electron"
           ELECTRON_BUILDER_CACHE: "/home/runner/.cache/electron-builder"
-        working-directory: ./frontend
