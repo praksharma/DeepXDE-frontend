@@ -1,14 +1,34 @@
 {
-  "name": "DeepXDE frontend",
-  "version": "1.0.0",
-  "description": "A front for DeepXDE",
+  "name": "DeepXDE-frontend",
+  "version": "0.0.1",
+  "description": "A frontend for DeepXDE",
   "main": "main.js",
-  "author": "Prakhar Sharma",
+  "author": {
+    "name": "Prakhar Sharma",
+    "email": "prakhars962@gmail.com"
+  },
+  "homepage": "https://github.com/praksharma/DeepXDE-frontend",
   "license": "AGPL",
   "devDependencies": {
-    "electron": "^28.2.3"
+    "electron": "^28.2.3",
+    "electron-builder": "^24.9.1"
   },
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.prakhar.sharma",
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "icon": "assets/"
+    },
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    }
   }
 }

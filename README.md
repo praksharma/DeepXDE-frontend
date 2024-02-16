@@ -7,17 +7,27 @@
 A GUI frontend for [DeepXDE](https://deepxde.readthedocs.io/en/latest) made in Flask. This project is in alpha stage unless you see a release.
 
 ## Testing
-Use
+Use this command to test the app from terminal.
 
 ```bash
-    npm start
+npm start
+```
+
+Use this command to build the app.
+```bash
+npm run dist
 ```
 
 ## Installation
 Copy the package.json file and the frontend folder to your project. Then run
 
 ```bash
-    npm install --save-dev electron
+npm install --save-dev electron
+```
+
+For build we need to install electron-builder
+```bash
+npm install electron-builder --save-dev
 ```
 
 ## Contributing to the project
