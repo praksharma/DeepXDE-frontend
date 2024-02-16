@@ -1,0 +1,81 @@
+<!--index.html-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="style-src 'self' 'unsafe-inline';">
+    <link rel="stylesheet" href="static/styles.css" nonce="1234567890">
+    <title>DeepXDE</title>
+  </head>
+  <body>
+    <div class="tab">
+      <button class="tablinks" onclick="openTab('Tab 1')">Setup</button>
+      <button class="tablinks" onclick="openTab('Tab 2')">Geometry</button>
+      <button class="tablinks" onclick="openTab('Tab 3')">Problem</button>
+      <button class="tablinks" onclick="openTab('Tab 4')">Compile</button>
+      <button class="tablinks" onclick="openTab('Tab 5')">Training</button>
+      <button class="tablinks" onclick="openTab('Tab 6')">Results</button>
+    </div>
+    
+
+  <div id="Tab 1" class="tabcontent">
+      <div class="row">
+          <label for="dimensionSelect">Please select the dimension of the problem:</label>
+          <select id="dimensionSelect">
+              <option value="1d">1 Dimensional (1D)</option>
+              <option value="2d">2 Dimensional (2D)</option>
+              <option value="3d">3 Dimensional (3D)</option>
+          </select>
+      </div>
+      
+      <div class="row">
+          <label for="configPathInput">Enter the path to save the project:</label>
+          <input type="text" id="configPathInput" placeholder="$HOME/Project/">
+      </div>
+
+      
+      <!-- Version check -->
+      <div class="row">
+          <!-- Button to check dependencies -->
+          <button id="checkBtn">Check</button>
+          <!-- Version textbox -->
+          <textarea id="versionTextbox" readonly style="width: 400px; height: 200px;" ></textarea>
+      </div>
+      
+      
+      
+  </div>
+
+  <div id="Tab 2" class="tabcontent">
+      <h3>Other</h3>
+      <p>Tab 2 here...</p>
+  </div>
+
+  <div id="Tab 3" class="tabcontent">
+      <h3>Other</h3>
+      <p>Tab 3 here...</p>
+  </div>
+
+  <div id="Tab 4" class="tabcontent">
+      <h3>Other</h3>
+      <p>Tab 4 here...</p>
+  </div>
+
+  <div id="Tab 5" class="tabcontent">
+      <h3>Other</h3>
+      <p>Tab 5 here...</p>
+  </div>
+
+  <div id="Tab 6" class="tabcontent">
+      <h3>Other</h3>
+      <p>Tab 6 here...</p>
+  </div>
+  
+ 
+
+    <!-- You can also require other files to run in this process -->
+    <script src="static/script.js"></script> 
+  </body>
+</html>

@@ -7,10 +7,18 @@
 A GUI frontend for [DeepXDE](https://deepxde.readthedocs.io/en/latest) made in Flask. This project is in alpha stage unless you see a release.
 
 ## Testing
-Install the requirements using `pip install -r requirements.txt` and run the app using `python app.py`. The app will be running on `http://127.0.0.1:5000`. Preferably use a virtual environment.
+Use
+
+```bash
+    npm start
+```
 
 ## Installation
-I think the frontend will be released as a standalone application.
+Copy the package.json file and the frontend folder to your project. Then run
+
+```bash
+    npm install --save-dev electron
+```
 
 ## Contributing to the project
 

@@ -1,38 +1,41 @@
-function openTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
+const { ipcRenderer } = window.require('electron');
+
+
+function openTab(tabName) {
+    // Hide all tab contents
+    var tabcontents = document.getElementsByClassName("tabcontent");
+    for (var i = 0; i < tabcontents.length; i++) {
+        tabcontents[i].style.display = "none";
     }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+
+    // Remove 'active' class from all tab links
+    var tablinks = document.getElementsByClassName("tablinks");
+    for (var i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
     }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
+
+    // Show the selected tab content
+    var selectedTab = document.getElementById(tabName);
+    if (selectedTab) {
+        selectedTab.style.display = "block";
+
+        // Add 'active' class to the clicked tab link
+        event.currentTarget.classList.add("active");
+    }
 }
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    // Automatically open the first tab
-    var tablinks = document.getElementsByClassName("tablinks");
-    if(tablinks.length > 0) {
-        tablinks[0].click();
-    }
-    
-    // Event listener for the check button
-    var checkBtn = document.getElementById("checkBtn");
-    if (checkBtn) {
-        checkBtn.addEventListener("click", function() {
-            fetch('/run-code')
-                .then(response => response.json())
-                .then(data => {
-                    var versionTextbox = document.getElementById("versionTextbox");
-                    versionTextbox.value = data.result;
-                    // Instead of adding a class, we'll directly change the visibility here
-                    versionTextbox.style.visibility = 'visible'; // Make the textbox visible
-                })
-                .catch(error => console.error('Error:', error));
-        });
-    }
-});
 
+// Modified event listener for the check button
+var checkBtn = document.getElementById("checkBtn");
+if (checkBtn) {
+    checkBtn.addEventListener("click", function() {
+        ipcRenderer.send('run-code-request');
+    });
+}
+
+// Listen for the response
+ipcRenderer.on('run-code-response', (event, data) => {
+    var versionTextbox = document.getElementById("versionTextbox");
+    versionTextbox.value = data.result; // Check if 'result' is the correct property name
+    versionTextbox.style.visibility = 'visible'; // Make the textbox visible
+});

@@ -1,0 +1,14 @@
+{
+  "name": "DeepXDE frontend",
+  "version": "1.0.0",
+  "description": "A front for DeepXDE",
+  "main": "main.js",
+  "author": "Prakhar Sharma",
+  "license": "AGPL",
+  "devDependencies": {
+    "electron": "^28.2.3"
+  },
+  "scripts": {
+    "start": "electron ."
+  }
+}
