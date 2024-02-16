@@ -18,6 +18,7 @@ The flask app is in the frontend folder. Here are some ways to contribute.
 
 - **Reporting bugs and Suggesting enhancements.** To report a bug, simply open an issue in the GitHub [Issues](https://github.com/praksharma/DeepXDE-frontend/issues).
 - **Pull requests.** If you made improvements to the project, fixed a bug, feel free to send us a pull-request.
+- [Flask tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world).
 
 ## License
 [AGPL-3.0 License](https://github.com/praksharma/DeepXDE-frontend/blob/main/LICENSE)

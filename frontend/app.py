@@ -1,13 +1,15 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
+
 app = Flask(__name__)
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/run-code', methods=['GET'])
-def run_code():
-
+def version_check():
+    """
+    Check the version of the DeepXDE and Pytorch
+    """
     flag = False
     error_message = "Checking modules\n"
     try:
@@ -32,9 +34,14 @@ def run_code():
     else:
         error_message += "All modules have been found...\nYou are good to go :)"
 
+    return error_message
+
+@app.route('/run-code', methods=['GET'])
+def run_code():
+
+    error_message = version_check()
     
     return jsonify({'result': error_message})
-
-
+    
 if __name__ == '__main__':
     app.run(debug=True)
