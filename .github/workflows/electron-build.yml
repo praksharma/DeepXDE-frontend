@@ -8,8 +8,9 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build-and-release-linux:
+    runs-on:  ubuntu-22.04
+
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v2
@@ -21,9 +22,13 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: ./frontend
+        working-directory: frontend
 
-      - name: Build and Release Electron App
+      - name: Build Electron App (.deb and .AppImage)
+        run: npm run build
+        working-directory: frontend
+
+      - name: Package and Release Electron App
         uses: samuelmeuli/action-electron-builder@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -32,4 +37,4 @@ jobs:
         env:
           ELECTRON_CACHE: "/home/runner/.cache/electron"
           ELECTRON_BUILDER_CACHE: "/home/runner/.cache/electron-builder"
-        working-directory: ./frontend
+        working-directory: frontend
