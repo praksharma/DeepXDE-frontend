@@ -1,5 +1,7 @@
-const { app, BrowserWindow,ipcMain, ipcRenderer } = require('electron');
-const { spawn } = require('child_process');
+const { app, BrowserWindow, ipcMain, ipcRenderer, dialog } = require('electron'); // List of all permissions
+const { spawn } = require('child_process'); // allows reading python file's stdout
+const os = require('os'); // import the OS module for file browser
+
 
 // Disable GPU Hardware Acceleration
 app.disableHardwareAcceleration();
@@ -40,6 +42,7 @@ function createWindow () {
 // Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
 
+// Read input from python file
 ipcMain.on('run-code-request', (event) => {
   const pythonProcess = spawn('python', ['static/version_check.py']);
   let pythonData = '';
@@ -54,26 +57,18 @@ ipcMain.on('run-code-request', (event) => {
   });
 });
 
-// log error
-// Event listener for running Python code
-// ipcMain.on('run-code-request', (event) => {
-//   // Spawn a Python process
-//   const pythonProcess = spawn('python', ['static/version_check.py']);
+// Open file dialog to browse project directory
+ipcMain.on('open-file-dialog', (event) => {
+  dialog.showOpenDialog(mainWindow, {
+    properties: ['openDirectory'],
+    defaultPath: os.homedir() // Use the os module to get the home directory
+  }).then(result => {
+    if (!result.canceled && result.filePaths.length > 0) {
+      // Send the selected directory path back to the renderer process
+      event.reply('selected-directory', result.filePaths[0]);
+    }
+  }).catch(err => {
+    console.log(err);
+  });
+});
 
-//   // Event listener for Python process output
-//   pythonProcess.stdout.on('data', (data) => {
-//       console.log(`Python output: ${data}`);
-//       // Send Python output to the renderer process
-//       event.reply('run-code-response', data.toString());
-//   });
-
-//   // Event listener for Python process error
-//   pythonProcess.stderr.on('data', (data) => {
-//       console.error(`Python error: ${data}`);
-//   });
-
-//   // Event listener for Python process exit
-//   pythonProcess.on('close', (code) => {
-//       console.log(`Python script exited with code ${code}`);
-//   });
-// });
