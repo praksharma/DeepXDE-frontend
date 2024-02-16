@@ -16,8 +16,12 @@ jobs:
         with:
           node-version: '16'
 
+      - name: Change directory to frontend/
+        run: cd frontend
+
       - name: Install dependencies
         run: npm install
+        working-directory: ./frontend
 
       - name: Build and Release Electron App
         uses: samuelmeuli/action-electron-builder@v1
@@ -25,3 +29,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           release: true
           args: --linux deb appImage
+        env:
+          working-directory: ./frontend
