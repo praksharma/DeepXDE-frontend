@@ -19,9 +19,6 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Change directory to frontend/
-        run: cd frontend
-
       - name: Install dependencies
         run: npm install
         working-directory: ./frontend
@@ -33,5 +30,6 @@ jobs:
           release: true
           args: --linux deb appImage
         env:
-          working-directory: ./frontend
-      
+          ELECTRON_CACHE: "/home/runner/.cache/electron"
+          ELECTRON_BUILDER_CACHE: "/home/runner/.cache/electron-builder"
+        working-directory: ./frontend
