@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-and-release-linux:
-    runs-on:  ubuntu-22.04
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Check out Git repository
@@ -21,12 +21,12 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies
-        run: npm install
         working-directory: frontend
+        run: npm install
 
       - name: Build Electron App (.deb and .AppImage)
-        run: npm run build
         working-directory: frontend
+        run: npm run build
 
       - name: Package and Release Electron App
         uses: samuelmeuli/action-electron-builder@v1
@@ -37,4 +37,3 @@ jobs:
         env:
           ELECTRON_CACHE: "/home/runner/.cache/electron"
           ELECTRON_BUILDER_CACHE: "/home/runner/.cache/electron-builder"
-        working-directory: frontend
