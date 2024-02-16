@@ -36,6 +36,6 @@ if (checkBtn) {
 // Listen for the response
 ipcRenderer.on('run-code-response', (event, data) => {
     var versionTextbox = document.getElementById("versionTextbox");
-    versionTextbox.value = data.result; // Check if 'result' is the correct property name
+    versionTextbox.value = data; // Check if 'result' is the correct property name
     versionTextbox.style.visibility = 'visible'; // Make the textbox visible
 });
