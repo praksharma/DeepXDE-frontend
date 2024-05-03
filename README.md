@@ -8,6 +8,12 @@
 
 A GUI frontend for [DeepXDE](https://deepxde.readthedocs.io/en/latest) made in Tkinter. This project is in alpha stage unless you see a release.
 
+## TODO
+- [ ] Add a proper README.md
+- [ ] Implement project directory
+- [ ] Implement a python debugger (not a priority)
+- [ ] Implement all pages
+
 ## Testing
 TBD
 
