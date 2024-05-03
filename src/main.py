@@ -12,6 +12,13 @@ class MyApp(tk.Tk):
         super().__init__()
         self.title("DeepXDE Frontend")
         self.geometry("800x600")
+
+        # icon
+        # Load the image
+        icon_image = tk.PhotoImage(file="media/home.png")
+
+        # Set the image as the icon for the window
+        self.iconphoto(True, icon_image)
         
         # Menu
         self.menu_manager = MenuManager(self)

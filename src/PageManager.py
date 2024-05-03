@@ -16,6 +16,7 @@ class PageManager:
 
         # Create a navigation button for the page
         button = tk.Button(self.nav_panel, text=title, command=lambda: self.show_page(page_cls))
+        # TODO: Set this to row col and pady for more space
         button.pack(side="left")  # Using pack for simplicity in horizontal button arrangement
 
     def show_page(self, page_cls):
