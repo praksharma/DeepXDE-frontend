@@ -26,7 +26,5 @@ TBD
 ## License
 [AGPL-3.0 License](https://github.com/praksharma/DeepXDE-frontend/blob/main/LICENSE)
 
-I suggest all the FOSS projects to use the GPL or AGPL license. Want to know [why](https://snyk.io/learn/agpl-license/)?
-
 ## Structure of the GUI interface
 ⚠️⚠️⚠️ TO BE UPDATED.⚠️⚠️⚠️
