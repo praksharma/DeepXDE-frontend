@@ -28,3 +28,8 @@ TBD
 
 ## Structure of the GUI interface
 ⚠️⚠️⚠️ TO BE UPDATED.⚠️⚠️⚠️
+
+# Snips
+![image](snips/license.png)
+
+![image](snips/version.png)
